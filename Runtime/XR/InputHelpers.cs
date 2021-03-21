@@ -59,7 +59,11 @@ public static class InputHelpers
         new ButtonInfo("", ButtonReadType.None),
         new ButtonInfo("MenuButton", ButtonReadType.Binary),
         new ButtonInfo("Trigger", ButtonReadType.Axis1D),
+#if PICOXR
+        new ButtonInfo("GripButton", ButtonReadType.Binary),        
+#else
         new ButtonInfo("Grip", ButtonReadType.Axis1D),
+#endif
         new ButtonInfo("TriggerPressed", ButtonReadType.Binary),
         new ButtonInfo("GripPressed", ButtonReadType.Binary),
         new ButtonInfo("PrimaryButton", ButtonReadType.Binary),
