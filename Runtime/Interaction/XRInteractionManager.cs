@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace UnityEngine.XR.Interaction.Toolkit
 {
+    
     /// <summary>
     /// The Interaction Manager acts as an intermediary between Interactors and Interactables.
     /// It is possible to have multiple Interaction Managers, each with their own valid set of Interactors and Interactables.
@@ -20,6 +21,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
     [HelpURL(XRHelpURLConstants.k_XRInteractionManager)]
     public class XRInteractionManager : MonoBehaviour
     {
+        private static XRInteractionManager m_Instance = null;
         /// <summary>
         /// Calls the methods in its invocation list when an <see cref="XRBaseInteractor"/> is registered.
         /// </summary>
@@ -117,6 +119,20 @@ namespace UnityEngine.XR.Interaction.Toolkit
         readonly InteractableRegisteredEventArgs m_InteractableRegisteredEventArgs = new InteractableRegisteredEventArgs();
         readonly InteractableUnregisteredEventArgs m_InteractableUnregisteredEventArgs = new InteractableUnregisteredEventArgs();
 
+        /// <summary>
+        /// See <see cref="MonoBehaviour"/>.
+        /// </summary>
+        protected virtual void OnAwake()
+        {
+            if (m_Instance != null)
+            {
+                DestroyImmediate(this);
+                return;
+            }
+            
+            m_Instance = this;
+        }
+        
         /// <summary>
         /// See <see cref="MonoBehaviour"/>.
         /// </summary>
