@@ -136,6 +136,15 @@ namespace UnityEngine.XR.Interaction.Toolkit
         /// <summary>
         /// See <see cref="MonoBehaviour"/>.
         /// </summary>
+        protected virtual void OnDestroy()
+        {
+            if (m_Instance == this)
+                m_Instance = null;
+        }
+        
+        /// <summary>
+        /// See <see cref="MonoBehaviour"/>.
+        /// </summary>
         protected virtual void OnEnable()
         {
             Application.onBeforeRender += OnBeforeRender;
